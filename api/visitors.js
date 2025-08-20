@@ -1,6 +1,7 @@
+// api/visitors.js
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
-const uri = process.env.MONGODB_URI; // Defina essa variável no painel da Vercel!
+const uri = process.env.MONGODB_URI;
 const dbName = "contadorDB";
 const collectionName = "visitors";
 
@@ -8,12 +9,14 @@ let cachedClient = null;
 
 async function getCollection() {
     if (!cachedClient) {
-        cachedClient = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
+        cachedClient = new MongoClient(uri, { 
+            serverApi: ServerApiVersion.v1 
+        });
         await cachedClient.connect();
     }
     const db = cachedClient.db(dbName);
     const collection = db.collection(collectionName);
-    // Garante que existe um documento para o contador
+    
     const doc = await collection.findOne({});
     if (!doc) {
         await collection.insertOne({ count: 0 });
