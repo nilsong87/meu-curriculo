@@ -1,12 +1,32 @@
 {
   "name": "curriculo-nilson-gomes",
   "version": "1.0.0",
-  "description": "Currículo online de Nilson Gomes",
+  "description": "Currículo online interativo de Nilson Gomes",
+  "type": "module",
   "scripts": {
-    "build": "mkdir -p public && cp -r *.html settings/ public/ || true",
-    "dev": "echo 'Servindo arquivos estáticos' && python3 -m http.server 3000 || python -m SimpleHTTPServer 3000 || npx serve ."
+    "dev": "node server.js",
+    "build": "echo 'Build completo - projeto estático'",
+    "start": "node server.js",
+    "vercel-build": "npm run build"
   },
-  "keywords": ["curriculo", "portfolio", "web"],
-  "author": "Nilson Gomes",
-  "license": "MIT"
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "mongodb": "^5.7.0"
+  },
+  "devDependencies": {
+    "@vercel/node": "^2.0.28"
+  },
+  "keywords": [
+    "curriculo",
+    "portfolio",
+    "web",
+    "developer",
+    "fullstack"
+  ],
+  "author": "Nilson Gomes <nilsonjosesilvagomes@hotmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }

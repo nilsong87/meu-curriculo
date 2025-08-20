@@ -1274,6 +1274,7 @@ body.modo-claro .social-link:hover {
     color: white;
 }
 
+
 /* Adicione estas correções ao final do seu arquivo CSS */
 
 /* Corrigir problemas de exibição do loader */
@@ -1351,4 +1352,8 @@ body.modo-claro .social-link:hover {
 [fade-in-up].visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.col-md-6{
+    color: black;
 }

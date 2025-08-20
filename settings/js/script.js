@@ -85,6 +85,43 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ==========================
+// Contador de Visitantes ATUALIZADO
+// ==========================
+async function incrementVisitorCount() {
+    try {
+        const response = await fetch('/api/visitors', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            document.getElementById('counter').textContent = data.count.toLocaleString();
+        } else {
+            // Fallback para contador local
+            fallbackCounter();
+        }
+    } catch (error) {
+        console.error('Erro no contador:', error);
+        fallbackCounter();
+    }
+}
+
+function fallbackCounter() {
+    const counter = document.getElementById('counter');
+    if (counter && !sessionStorage.getItem('visitCounted')) {
+        const baseCount = Math.floor(Math.random() * 100) + 1000;
+        counter.textContent = baseCount.toLocaleString();
+        sessionStorage.setItem('visitCounted', 'true');
+    } else if (counter) {
+        const currentCount = parseInt(counter.textContent.replace(/\D/g, ''));
+        counter.textContent = (currentCount + 1).toLocaleString();
+    }
+}
+
+// ==========================
 // Acessibilidade: Alto contraste e ajuste de fonte
 // ==========================
 function toggleContraste() {
@@ -215,27 +252,6 @@ function initFadeInAnimations() {
     
     checkFadeIn();
     window.addEventListener('scroll', checkFadeIn);
-}
-
-// ==========================
-// Contador de Visitantes
-// ==========================
-async function incrementVisitorCount() {
-    try {
-        // Simular contador de visitantes (já que a API não está disponível)
-        const counter = document.getElementById('counter');
-        if (counter && !sessionStorage.getItem('visitCounted')) {
-            const baseCount = Math.floor(Math.random() * 100) + 1000;
-            counter.textContent = baseCount.toLocaleString();
-            sessionStorage.setItem('visitCounted', 'true');
-        } else if (counter) {
-            const currentCount = parseInt(counter.textContent.replace(/\D/g, ''));
-            counter.textContent = (currentCount + 1).toLocaleString();
-        }
-    } catch (error) {
-        console.error('Erro no contador:', error);
-        document.getElementById('counter').textContent = "1000+";
-    }
 }
 
 // ==========================
@@ -383,3 +399,98 @@ document.addEventListener('mousedown', function() {
 // ==========================
 console.log("%cBem-vindo ao currículo de Nilson Gomes! 🚀", "color: #2e6cf6; font-size: 1.2em; font-weight: bold;");
 console.log("%cDesenvolvido com HTML5, CSS3, JavaScript e muito café! ☕", "color: #ff3864; font-size: 1em;");
+
+// ==========================
+// Funções utilitárias adicionais
+// ==========================
+function smoothScrollTo(element, duration = 1000) {
+    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
+// ==========================
+// Detecção de recursos do navegador
+// ==========================
+function checkBrowserCompatibility() {
+    const features = {
+        'ES6': typeof Symbol !== 'undefined' && typeof Map !== 'undefined',
+        'Fetch': typeof fetch !== 'undefined',
+        'IntersectionObserver': typeof IntersectionObserver !== 'undefined',
+        'CSSVariables': window.CSS && window.CSS.supports && window.CSS.supports('--a', 0)
+    };
+
+    if (!features.ES6 || !features.Fetch || !features.IntersectionObserver || !features.CSSVariables) {
+        console.warn('Alguns recursos modernos não são suportados neste navegador');
+        // Adicionar fallbacks se necessário
+    }
+}
+
+// Verificar compatibilidade ao carregar
+checkBrowserCompatibility();
+
+// ==========================
+// Prevenção de comportamento padrão para links âncora
+// ==========================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            smoothScrollTo(target);
+        }
+    });
+});
+
+// ==========================
+// Otimização de performance - Lazy loading para imagens
+// ==========================
+if ('IntersectionObserver' in window) {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+}
+
+// ==========================
+// Prevenção de múltiplos cliques em botões
+// ==========================
+document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('click', function(e) {
+        if (this.classList.contains('loading')) {
+            e.preventDefault();
+            return;
+        }
+        
+        this.classList.add('loading');
+        setTimeout(() => this.classList.remove('loading'), 1000);
+    });
+});

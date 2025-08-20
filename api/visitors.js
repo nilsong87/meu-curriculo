@@ -17,6 +17,7 @@ async function getCollection() {
     const db = cachedClient.db(dbName);
     const collection = db.collection(collectionName);
     
+    // Garante que existe um documento para o contador
     const doc = await collection.findOne({});
     if (!doc) {
         await collection.insertOne({ count: 0 });
@@ -25,6 +26,7 @@ async function getCollection() {
 }
 
 export default async function handler(req, res) {
+    // Configuração CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -52,6 +54,10 @@ export default async function handler(req, res) {
 
         res.status(405).json({ error: 'Método não permitido' });
     } catch (error) {
-        res.status(500).json({ error: 'Erro no servidor', details: error.message });
+        console.error('Erro na API:', error);
+        res.status(500).json({ 
+            error: 'Erro no servidor', 
+            details: error.message 
+        });
     }
 }

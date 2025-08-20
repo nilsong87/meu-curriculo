@@ -12,12 +12,29 @@
     {
       "src": "settings/**/*",
       "use": "@vercel/static"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "."
+      }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "dest": "/api/$1",
+      "methods": ["GET", "POST", "OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
+      }
+    },
+    {
+      "src": "/settings/(.*)",
+      "dest": "/settings/$1"
     },
     {
       "src": "/(.*)",
@@ -26,5 +43,11 @@
   ],
   "env": {
     "MONGODB_URI": "mongodb+srv://nilsonjosesilvagomes:UiAbuNMdhSOqbLlb@cluster0.zwjhdco.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  }
+  },
+  "functions": {
+    "api/visitors.js": {
+      "maxDuration": 10
+    }
+  },
+  "outputDirectory": "."
 }
