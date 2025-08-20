@@ -87,21 +87,30 @@ document.addEventListener("DOMContentLoaded", function () {
 // ==========================
 // Contador de Visitantes ATUALIZADO
 // ==========================
+// settings/js/script.js - Função incrementVisitorCount atualizada
 async function incrementVisitorCount() {
     try {
-        const response = await fetch('/api/visitors', {
+        // Primeiro tenta buscar o contador atual
+        const getResponse = await fetch('/api/visitors');
+        let currentCount = 0;
+        
+        if (getResponse.ok) {
+            const data = await getResponse.json();
+            currentCount = data.count;
+            document.getElementById('counter').textContent = currentCount.toLocaleString();
+        }
+
+        // Depois incrementa
+        const postResponse = await fetch('/api/visitors', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
         });
         
-        if (response.ok) {
-            const data = await response.json();
+        if (postResponse.ok) {
+            const data = await postResponse.json();
             document.getElementById('counter').textContent = data.count.toLocaleString();
-        } else {
-            // Fallback para contador local
-            fallbackCounter();
         }
     } catch (error) {
         console.error('Erro no contador:', error);
@@ -116,7 +125,7 @@ function fallbackCounter() {
         counter.textContent = baseCount.toLocaleString();
         sessionStorage.setItem('visitCounted', 'true');
     } else if (counter) {
-        const currentCount = parseInt(counter.textContent.replace(/\D/g, ''));
+        const currentCount = parseInt(counter.textContent.replace(/\D/g, '') || '0');
         counter.textContent = (currentCount + 1).toLocaleString();
     }
 }
