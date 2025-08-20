@@ -4,7 +4,6 @@
   "description": "Currículo online interativo de Nilson Gomes",
   "type": "module",
   "scripts": {
-    "build": "node build.js",
     "dev": "node server.js"
   },
   "dependencies": {
@@ -20,8 +19,5 @@
     "fullstack"
   ],
   "author": "Nilson Gomes <nilsonjosesilvagomes@hotmail.com>",
-  "license": "MIT",
-  "engines": {
-    "node": ">=16.0.0"
-  }
+  "license": "MIT"
 }
