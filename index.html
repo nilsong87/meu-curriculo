@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" type="image/png">
+    <meta name="description"
+        content="Currículo Imersivo de Nilson Gomes, Administrador, Desenvolvedor Web e Eletrotécnico.">
+    <meta name="keywords" content="Currículo, Nilson Gomes, Desenvolvedor Web, Administrador, Eletrotécnico, Portfólio">
+    <meta name="author" content="Nilson Gomes">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+    <!-- Novas fontes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="settings/css/style.css">
+
+    <title>Currículo Imersivo - Nilson Gomes</title>
+</head>
+
+<body>
+    <!-- Efeito de partículas no fundo -->
+    <div id="particles-js"></div>
+
+    <!-- Navegação por pontos flutuantes -->
+    <div class="floating-nav">
+        <div class="nav-dot active" data-section="Início"></div>
+        <div class="nav-dot" data-section="Informações"></div>
+        <div class="nav-dot" data-section="Competências"></div>
+        <div class="nav-dot" data-section="Experiência"></div>
+        <div class="nav-dot" data-section="Educação"></div>
+        <div class="nav-dot" data-section="Cursos"></div>
+        <div class="nav-dot" data-section="Habilidades"></div>
+        <div class="nav-dot" data-section="Idiomas"></div>
+        <div class="nav-dot" data-section="Portfólio"></div>
+    </div>
+
+    <!-- Visualizador de áudio (apenas visual) -->
+    <div class="audio-visualizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <div class="top-bar-wrap">
+        <!-- Acessibilidade -->
+        <div id="acessibilidade-bar">
+            <button onclick="toggleContraste()" aria-label="Ativar/desativar alto contraste" tabindex="0">
+                <i class="fas fa-adjust"></i> Alto Contraste
+            </button>
+            <button onclick="alterarFonte(1)" aria-label="Aumentar fonte" tabindex="0">
+                <i class="fas fa-text-height"></i> A+
+            </button>
+            <button onclick="alterarFonte(-1)" aria-label="Diminuir fonte" tabindex="0">
+                <i class="fas fa-text-height"></i> A-
+            </button>
+            <button onclick="toggleAudio()" aria-label="Ativar/desativar efeitos sonoros" tabindex="0">
+                <i class="fas fa-volume-mute"></i> Som
+            </button>
+        </div>
+        <!-- Contador de visitantes -->
+        <div id="visitor-counter" class="text-right pr-3 pt-2 small">Visitantes: <span id="counter">0</span></div>
+    </div>
+
+    <!-- Loader de carregamento -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="hologram">
+                <div class="hologram-inner">
+                    <div class="hologram-face"><i class="fas fa-code"></i></div>
+                    <div class="hologram-face"><i class="fas fa-bolt"></i></div>
+                    <div class="hologram-face"><i class="fas fa-cogs"></i></div>
+                    <div class="hologram-face"><i class="fas fa-rocket"></i></div>
+                    <div class="hologram-face"><i class="fas fa-microchip"></i></div>
+                    <div class="hologram-face"><i class="fas fa-brain"></i></div>
+                </div>
+            </div>
+            <div class="loader-text">Inicializando currículo</div>
+        </div>
+    </div>
+
+    <!-- Container principal -->
+    <div class="container py-4 px-2">
+        <!-- Cabeçalho com informações pessoais -->
+        <header class="header text-center">
+            <h1 class="display-4 typewriter">Nilson Gomes</h1>
+            <p class="lead">Administrador, Desenvolvedor Web e Eletrotécnico</p>
+            <div class="photo">
+                <img src="/settings/images/FB_IMG_1715899856417.jpg" alt="Foto de Nilson Gomes"
+                    class="img-fluid rounded-circle">
+            </div>
+        </header>
+
+        <!-- Seção de Informações Pessoais -->
+        <section class="section mb-4" fade-in-up id="informacoes">
+            <h2 class="section-title"><i class="fas fa-user"></i> Informação Pessoal</h2>
+            <ul class="list-unstyled mb-0">
+                <li><strong>Nome:</strong> Nilson José Silva Gomes</li>
+                <li><strong>Data Nascimento:</strong> 07/09/1987</li>
+                <li><strong>Nacionalidade:</strong> Brasileiro</li>
+                <li><strong>Escolaridade:</strong> Superior Completo</li>
+            </ul>
+        </section>
+
+        <!-- Seção de Contatos -->
+        <section class="section mb-4" fade-in-up id="contatos">
+            <h2 class="section-title"><i class="fas fa-address-card"></i> Contatos</h2>
+            <ul class="list-unstyled">
+                <li><i class="fas fa-map-marker-alt"></i> <strong>Endereço:</strong> Salvador, BA</li>
+                <li><i class="fas fa-phone"></i> <strong>Telefone:</strong> (+55) 71 99938 5205</li>
+                <li>
+                    <i class="fab fa-whatsapp"></i>
+                    <strong>Whatsapp:</strong>
+                    <a href="https://wa.me/55719999385205" target="_blank" rel="noopener">
+                        (+55) 71 99938 5205
+                    </a>
+                </li>
+                <li><i class="fab fa-github"></i> <strong>GitHub:</strong> <a href="https://github.com/nilsong87"
+                        target="_blank">github.com/nilsong87</a></li>
+                <li><i class="fab fa-linkedin"></i> <strong>LinkedIn:</strong> <a
+                        href="https://www.linkedin.com/in/nilson-gomes-dv/"
+                        target="_blank">linkedin.com/in/nilson-gomes-dv</a></li>
+                <li><i class="fas fa-envelope"></i> <strong>Email:</strong> <a
+                        href="mailto:nilsonjosesilvagomes@hotmail.com">nilsonjosesilvagomes@hotmail.com</a></li>
+            </ul>
+        </section>
+
+        <!-- Seção de Competências Pessoais -->
+        <section class="section mb-4" fade-in-up id="competencias">
+            <h2 class="section-title"><i class="fas fa-brain"></i> Competências Pessoais</h2>
+            <ul class="list-unstyled">
+                <div class="info-item mb-3">
+                    <li>Responsabilidade</li>
+                    <li>Organização</li>
+                    <li>Espírito de Equipe</li>
+                    <li>Pontualidade</li>
+                    <li>Dedicação</li>
+                </div>
+            </ul>
+        </section>
+
+        <!-- Seção de Experiência Profissional -->
+        <section class="section mb-4" fade-in-up id="experiencia">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Experiência</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">09.2024 - Atualidade</span>
+                    <strong>Programador Fullstack</strong>
+                    <p>Desenvolvimento de soluções personalizadas, prototipagem, e uso de tecnologias como PHP/Laravel e
+                        MySQL.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">04.2014 - 10.2014</span>
+                    <strong>Eletricista Chefe de Obra em Edifício Residencial – Salvador/BA</strong>
+                    <p>Responsável pela instalação elétrica completa de edifício residencial, liderando equipe técnica,
+                        interpretando projetos e garantindo prazos e normas de segurança. Atuou na montagem de sistemas
+                        elétricos e na interface técnica com engenheiros, arquitetos e fornecedores.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">05.2013 - 12.2023</span>
+                    <strong>MEI - Líder do Cartucho</strong>
+                    <p>Gestão de produção, controle de qualidade, e liderança de equipe.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Educação e Formação -->
+        <section class="section mb-4" fade-in-up id="educacao">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Educação e Formação</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">08.2024 - 12.2024</span>
+                    <strong>Programador FullStack - SENAC-BA</strong>
+                    <p>Desenvolvimento web completo, dominando tanto o front-end (HTML, CSS, JavaScript, React) quanto o
+                        back-end (Node.js, PHP, bancos de dados SQL e NoSQL). Com uma metodologia prática e alinhada às
+                        demandas do mercado, o aluno aprende a criar sistemas robustos, integrando APIs, garantindo
+                        segurança e performance.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">08.2022 - 08.2023</span>
+                    <strong>MBA em Gestão de Recursos Humanos - Unijorge</strong>
+                    <p>O curso aborda temas como recrutamento, treinamento, remuneração, compliance trabalhista e
+                        análise de dados em RH, combinando teoria e prática para decisões estratégicas. Desenvolvendo
+                        habilidades em gestão de conflitos, cultura organizacional e políticas de diversidade,
+                        essenciais para um mercado em transformação.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">02.2013 - 12.2013</span>
+                    <strong>Eletrotécnica - EEEMBA</strong>
+                    <p>Inclui disciplinas como comandos elétricos, instalações prediais, eletrônica básica, máquinas
+                        elétricas e segurança do trabalho.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">08.2008 - 08.2012</span>
+                    <strong>Bacharelado em Administração - Faculdade Castro Alves</strong>
+                    <p>Gestão Estratégica de Negócios, Finanças Corporativas e Análise de Investimentos, Marketing e
+                        Comportamento do Consumidor, Logística e Cadeia de Suprimentos, Gestão de Pessoas e Liderança
+                        Organizacional, Empreendedorismo e Inovação e Direito Empresarial e Legislação Tributária.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Cursos -->
+        <section class="section mb-4 fade-in-up" id="cursos">
+            <h2 class="section-title"><i class="fas fa-certificate"></i> Cursos</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2025:</strong> Aprendendo com Python - ENAP<br>
+                        <p class="mb-0">Fundamentos da ciência da computação com Python, focando em resolver problemas e
+                            utilizar frameworks, bibliotecas e pacotes em diversos contextos.</p>
+                    </div>
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2025:</strong> GitHub Copilot - ENAP<br>
+                        <p class="mb-0">Uso do GitHub Copilot para automatizar desenvolvimento, aumentar produtividade
+                            com IA generativa e técnicas de prompts para otimizar resultados.</p>
+                    </div>
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2024:</strong> Segurança de Endpoint - Cisco<br>
+                        <p class="mb-0">Práticas de segurança para dispositivos finais, incluindo proteção contra
+                            ameaças e gerenciamento de endpoints.</p>
+                    </div>
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2024:</strong> Fundamentos do Python 1 - Cisco<br>
+                        <p class="mb-0">Introdução à programação com Python, cobrindo sintaxe básica, estruturas de
+                            controle e manipulação de dados.</p>
+                    </div>
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2024:</strong> Fundamentos do Python 2 - Cisco<br>
+                        <p class="mb-0">Programação orientada a objetos, manipulação de exceções, uso de módulos e
+                            pacotes, práticas recomendadas de codificação.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2025:</strong> Segurança da Informação para Todos - ENAP<br>
+                        <p class="mb-0">O curso Segurança da Informação para Todos da ENAP ensina princípios básicos,
+                            ameaças digitais, boas práticas, proteção de dados pessoais e segurança no trabalho remoto.
+                        </p>
+                    </div>
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2024:</strong> Noções Básicas de JavaScript 1 - Cisco<br>
+                        <p class="mb-0">Introdução à programação com JavaScript, Controle de Fluxo, incluindo
+                            manipulação de DOM, lógica de programação e a criação de Projetos Práticos.</p>
+                    </div>
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2024:</strong> Noções Básicas de JavaScript 2 - Cisco<br>
+                        <p class="mb-0">Conceitos avançados de JavaScript, Estruturas de Controle, Objetos, incluindo
+                            funções, objetos e manipulação de eventos.</p>
+                    </div>
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2024:</strong> Introdução à Ciência de Dados - Cisco<br>
+                        <p class="mb-0">Fundamentos de ciência de dados, incluindo coleta, Inteligência Artificial e
+                            Machine Learning, análise e visualização de dados.</p>
+                    </div>
+                    <div class="info-item mb-3 p-3 bg-light rounded shadow-sm">
+                        <strong>2024:</strong> Introduction to Cybersecurity - Cisco<br>
+                        <p class="mb-0">Fundamentos da segurança cibernética, proteção pessoal até conceitos aplicados a
+                            organizações.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Competências Técnicas -->
+        <section class="section mb-5" fade-in-up id="habilidades">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Competências Técnicas</h2>
+            <div class="competencias-grid">
+                <!-- HTML5 -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <path fill="#e44d26" d="M9 3l3 34 12 4 12-4 3-34z" />
+                            <path fill="#f16529" d="M24 39l9.7-2.7 2.6-29.3H24z" />
+                            <path fill="#ebebeb" d="M24 20.5h-5.2l-.3-3.2H24V14h-8.5l.1 1.2 1 11.2H24z" />
+                            <path fill="#fff"
+                                d="M24 20.5v3.3h4.7l-.4 4.2-4.3 1.2v3.4l7.1-2 1-11.2.1-1.2H24v3.3h4.9l-.2 2.2z" />
+                        </svg>
+                    </span>
+                    <span>HTML5</span>
+                </div>
+                <!-- CSS3 -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <path fill="#264de4" d="M9 3l3 34 12 4 12-4 3-34z" />
+                            <path fill="#2965f1" d="M24 39l9.7-2.7 2.6-29.3H24z" />
+                            <path fill="#ebebeb" d="M24 20.5h-5.2l-.3-3.2H24V14h-8.5l.1 1.2 1 11.2H24z" />
+                            <path fill="#fff"
+                                d="M24 20.5v3.3h4.7l-.4 4.2-4.3 1.2v3.4l7.1-2 1-11.2.1-1.2H24v3.3h4.9l-.2 2.2z" />
+                        </svg>
+                    </span>
+                    <span>CSS3</span>
+                </div>
+                <!-- JavaScript -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <rect width="48" height="48" rx="8" fill="#f7df1e" />
+                            <path
+                                d="M19 34.5l-2.2-1.3c.4-.7.7-1.3 1.4-2.3.7-1 1.2-1.7 2.2-2.7 1.2-1.2 2.2-2.1 3.7-2.1 1.7 0 2.7.8 2.7 2.2 0 1.2-.7 1.8-2.2 2.7l-1.2.7c-.7.4-1.2.7-1.2 1.3v.2h5.2v2.1H19z"
+                                fill="#000" />
+                        </svg>
+                    </span>
+                    <span>JavaScript</span>
+                </div>
+                <!-- Bootstrap -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <rect width="48" height="48" rx="10" fill="#7952b3" />
+                            <text x="24" y="31" text-anchor="middle" font-size="22" font-family="Arial" fill="#fff"
+                                font-weight="bold">B</text>
+                        </svg>
+                    </span>
+                    <span>Bootstrap</span>
+                </div>
+                <!-- PHP -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <ellipse cx="24" cy="24" rx="22" ry="12" fill="#777bb4" />
+                            <text x="24" y="29" text-anchor="middle" font-size="14" font-family="Arial" fill="#fff"
+                                font-weight="bold">PHP</text>
+                        </svg>
+                    </span>
+                    <span>PHP</span>
+                </div>
+                <!-- Laravel -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <path fill="#ff2d20" d="M24 4L8 12v24l16 8 16-8V12L24 4zm0 8l10 5v14l-10 5-10-5V17l10-5z"/>
+                        </svg>
+                    </span>
+                    <span>Laravel</span>
+                </div>
+                <!-- Node.js -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <circle cx="24" cy="24" r="20" fill="#8cc84b" />
+                            <text x="24" y="30" text-anchor="middle" font-size="14" font-family="Arial" fill="#fff"
+                                font-weight="bold">Node</text>
+                        </svg>
+                    </span>
+                    <span>Node.js</span>
+                </div>
+                <!-- MySQL -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <ellipse cx="24" cy="24" rx="20" ry="10" fill="#00758f" />
+                            <text x="24" y="29" text-anchor="middle" font-size="13" font-family="Arial" fill="#fff"
+                                font-weight="bold">MySQL</text>
+                        </svg>
+                    </span>
+                    <span>MySQL</span>
+                </div>
+                <!-- MongoDB -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <ellipse cx="24" cy="24" rx="20" ry="10" fill="#47A248" />
+                            <text x="24" y="29" text-anchor="middle" font-size="13" font-family="Arial" fill="#fff"
+                                font-weight="bold">Mongo</text>
+                        </svg>
+                    </span>
+                    <span>MongoDB</span>
+                </div>
+                <!-- Figma -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <circle cx="16" cy="16" r="8" fill="#f24e1e" />
+                            <circle cx="32" cy="16" r="8" fill="#a259ff" />
+                            <circle cx="16" cy="32" r="8" fill="#0acf83" />
+                            <circle cx="32" cy="32" r="8" fill="#1abcfe" />
+                            <circle cx="24" cy="24" r="8" fill="#ff7262" />
+                        </svg>
+                    </span>
+                    <span>Figma</span>
+                </div>
+                <!-- GitHub -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <circle cx="24" cy="24" r="22" fill="#181717" />
+                            <path
+                                d="M24 34c-6 0-10-4-10-8.9 0-2 1-3.7 2.6-5-0.3-0.7-1.1-3.2 0.2-6.6 0 0 2-0.6 6.6 2.5 1.9-0.5 4-0.7 6-0.7s4.1 0.2 6 0.7c4.6-3.1 6.6-2.5 6.6-2.5 1.3 3.4 0.5 5.9 0.2 6.6 1.6 1.3 2.6 3 2.6 5C34 30 30 34 24 34z"
+                                fill="#fff" />
+                        </svg>
+                    </span>
+                    <span>GitHub</span>
+                </div>
+                <!-- Copilot -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <circle cx="24" cy="24" r="22" fill="#00a4ef" />
+                            <circle cx="18" cy="22" r="5" fill="#fff" />
+                            <circle cx="30" cy="22" r="5" fill="#fff" />
+                            <ellipse cx="24" cy="30" rx="8" ry="4" fill="#fff" />
+                        </svg>
+                    </span>
+                    <span>Copilot</span>
+                </div>
+                <!-- Vercel -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <polygon points="24,8 44,40 4,40" fill="#000" />
+                        </svg>
+                    </span>
+                    <span>Vercel</span>
+                </div>
+                <!-- Vite -->
+                <div class="competencia-item">
+                    <span class="tecnica-svg">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <path fill="#ffd028" d="M24 4L8 36h32L24 4z"/>
+                            <path fill="#9450e0" d="M24 4L8 36h10L24 20l6 16h10L24 4z"/>
+                        </svg>
+                    </span>
+                    <span>Vite</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Idiomas -->
+        <section class="section mb-5" fade-in-up id="idiomas">
+            <h2 class="section-title"><i class="fas fa-globe-americas"></i> Idiomas</h2>
+            <div class="competencias-grid">
+                <div class="competencia-item">
+                    <!-- Brasil -->
+                    <span class="idioma-bandeira">
+                        <svg width="36" height="24" viewBox="0 0 36 24">
+                            <rect width="36" height="24" fill="#3EAE2A" />
+                            <polygon points="18,4 32,12 18,20 4,12" fill="#FFCC29" />
+                            <circle cx="18" cy="12" r="6" fill="#2A4D9B" />
+                        </svg>
+                    </span>
+                    <span>Português</span>
+                </div>
+                <div class="competencia-item">
+                    <!-- EUA -->
+                    <span class="idioma-bandeira">
+                        <svg width="36" height="24" viewBox="0 0 36 24">
+                            <rect width="36" height="24" fill="#fff" />
+                            <g>
+                                <rect y="0" width="36" height="3" fill="#B22234" />
+                                <rect y="6" width="36" height="3" fill="#B22234" />
+                                <rect y="12" width="36" height="3" fill="#B22234" />
+                                <rect y="18" width="36" height="3" fill="#B22234" />
+                            </g>
+                            <rect width="14" height="12" fill="#3C3B6E" />
+                        </svg>
+                    </span>
+                    <span>Inglês</span>
+                </div>
+                <div class="competencia-item">
+                    <!-- Espanha -->
+                    <span class="idioma-bandeira">
+                        <svg width="36" height="24" viewBox="0 0 36 24">
+                            <rect width="36" height="24" fill="#AA151B" />
+                            <rect y="6" width="36" height="12" fill="#F1BF00" />
+                        </svg>
+                    </span>
+                    <span>Espanhol</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Portfólio -->
+        <section class="section mb-5" fade-in-up id="portfolio">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Portfólio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/01.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/Financasegura/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Banco Finança Segura</h3>
+                        <p>Simulação de sistema bancário online</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/02.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/JSCourse/" target="_blank" class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Curso de JavaScript</h3>
+                        <p>Plataforma de ensino de JavaScript</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/03.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/JavaScript-PCD/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Curso de JavaScript (PCD)</h3>
+                        <p>Curso inclusivo para Pessoas com Deficiência</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/04.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/Curso-Musica/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Curso de Música</h3>
+                        <p>Plataforma de ensino musical online</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/05.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/DevGuide/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>DevGuide</h3>
+                        <p>Guia completo para desenvolvedores</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/06.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/DiabeticCare/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>DiabeticCare</h3>
+                        <p>Aplicativo para controle de diabetes</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="holographic-btn" id="ver-mais-projetos">Ver Mais Projetos</button>
+            </div>
+
+            <div id="projetos-adicionais" class="portfolio-grid mt-4" style="display: none;">
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/07.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/Ecommerce-Instrumentos-Musicais/"
+                                    target="_blank" class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>E-commerce</h3>
+                        <p>Loja virtual de instrumentos musicais</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/08.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/Endometriose-Info/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Endometriose Guia</h3>
+                        <p>Portal informativo sobre endometriose</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/10.png);">                              
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/TextAnalyzer/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>TextAnalyzer</h3>
+                        <p>Ferramenta de análise e tradução de textos</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/11.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://meu-blog-rho.vercel.app/" target="_blank" class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Meu Blog</h3>
+                        <p>Blog pessoal com artigos sobre tecnologia</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/12.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/Meu-Garoto/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Ajuda na Alfabetização</h3>
+                        <p>Ferramentas educativas para alfabetização</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/13.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/Repositorio-Senac/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Repositório Senac</h3>
+                        <p>Repositório de projetos do Senac-BA</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background-image: url(/settings/images/14.png);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/detective-noir/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>RPG Detective Noir</h3>
+                        <p>Jogo online de investigação</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #2e6cf6, #ffcc00);">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://nilsong87.github.io/CineStream/" target="_blank"
+                                    class="portfolio-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Cine Stream</h3>
+                        <p>Plataforma de streaming de filmes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rodapé -->
+        <footer class="footer bg-dark text-white text-center py-3">
+            <p>&copy; 2024 Nilson Gomes. Todos os direitos reservados.</p>
+            <div class="social-links mt-2">
+                <a href="https://github.com/nilsong87" target="_blank" class="social-link"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nilson-gomes-dv/" target="_blank" class="social-link"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/55719999385205" target="_blank" class="social-link"><i
+                        class="fab fa-whatsapp"></i></a>
+                <a href="mailto:nilsonjosesilvagomes@hotmail.com" class="social-link"><i
+                        class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+    </div>
+    <!-- Fim do container principal -->
+
+    <!-- Scripts JavaScript -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- Seu script -->
+    <script src="settings/js/script.js"></script>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+
+</html>
