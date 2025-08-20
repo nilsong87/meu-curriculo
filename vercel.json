@@ -12,13 +12,6 @@
     {
       "src": "settings/**/*",
       "use": "@vercel/static"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "."
-      }
     }
   ],
   "routes": [

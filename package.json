@@ -7,7 +7,7 @@
     "dev": "node server.js",
     "build": "echo 'Build completo - projeto estático'",
     "start": "node server.js",
-    "vercel-build": "npm run build"
+    "vercel-build": "echo 'Build para Vercel'"
   },
   "dependencies": {
     "express": "^4.18.2",
