@@ -1,23 +1,21 @@
 {
-  "name": "curriculo-nilson-gomes",
+  "name": "meu-curriculo",
   "version": "1.0.0",
-  "description": "Currículo online interativo de Nilson Gomes",
-  "type": "module",
+  "main": "server.js",
   "scripts": {
-    "dev": "node server.js"
+    "start": "node server.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
-    "express": "^4.18.2",
+    "@popperjs/core": "^2.11.8",
+    "@vercel/blob": "^1.0.2",
+    "@vercel/kv": "^3.0.0",
     "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jquery": "^3.7.1",
     "mongodb": "^5.7.0"
-  },
-  "keywords": [
-    "curriculo",
-    "portfolio",
-    "web",
-    "developer",
-    "fullstack"
-  ],
-  "author": "Nilson Gomes <nilsonjosesilvagomes@hotmail.com>",
-  "license": "MIT"
+  }
 }

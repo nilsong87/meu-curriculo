@@ -1,57 +1,61 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.')); // Servir arquivos estáticos
+
+// CORS manual para garantir funcionamento
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.sendStatus(200);
+});
 
 // Configuração do MongoDB
 const uri = "mongodb+srv://nilsonjosesilvagomes:UiAbuNMdhSOqbLlb@cluster0.zwjhdco.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const client = new MongoClient(uri, { 
-    serverApi: ServerApiVersion.v1 
-});
+const client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
 const dbName = "contadorDB";
 const collectionName = "visitors";
 
-// Conectar ao MongoDB
-let db, collection;
-
-async function connectDB() {
-    try {
-        await client.connect();
-        db = client.db(dbName);
-        collection = db.collection(collectionName);
-        
-        // Garantir que existe um documento
-        const doc = await collection.findOne({});
-        if (!doc) {
-            await collection.insertOne({ count: 0 });
-        }
-        
-        console.log('Conectado ao MongoDB');
-    } catch (error) {
-        console.error('Erro ao conectar MongoDB:', error);
+// Função para conectar e garantir o documento do contador
+async function getCollection() {
+    await client.connect();
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
+    // Garante que existe um documento para o contador
+    const doc = await collection.findOne({});
+    if (!doc) {
+        await collection.insertOne({ count: 0 });
     }
+    return collection;
 }
 
-// Rotas da API
+// GET: retorna o contador
 app.get('/api/visitors', async (req, res) => {
     try {
+        const collection = await getCollection();
         const doc = await collection.findOne({});
         res.json({ count: doc.count });
     } catch (error) {
-        console.error('Erro GET:', error);
         res.status(500).json({ error: 'Erro ao buscar contador' });
     }
 });
 
+// POST: incrementa o contador
 app.post('/api/visitors', async (req, res) => {
     try {
+        const collection = await getCollection();
         const doc = await collection.findOneAndUpdate(
             {},
             { $inc: { count: 1 } },
@@ -59,36 +63,10 @@ app.post('/api/visitors', async (req, res) => {
         );
         res.json({ count: doc.value.count });
     } catch (error) {
-        console.error('Erro POST:', error);
         res.status(500).json({ error: 'Erro ao incrementar contador' });
     }
 });
 
-// Servir o arquivo principal
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+app.listen(PORT, () => {
+    console.log(`API rodando em http://localhost:${PORT}`);
 });
-
-// Rota para arquivos estáticos
-app.get('/settings/:type/:file', (req, res) => {
-    const { type, file } = req.params;
-    res.sendFile(path.join(__dirname, 'settings', type, file));
-});
-
-// Inicializar servidor
-async function startServer() {
-    await connectDB();
-    
-    app.listen(PORT, () => {
-        console.log(`Servidor rodando em http://localhost:${PORT}`);
-    });
-}
-
-// Graceful shutdown
-process.on('SIGINT', async () => {
-    console.log('Encerrando servidor...');
-    await client.close();
-    process.exit(0);
-});
-
-startServer().catch(console.error);
