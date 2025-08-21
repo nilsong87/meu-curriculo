@@ -822,9 +822,9 @@ body.loaded {
 
 /* Modo alto contraste */
 .alto-contraste {
-    --primary: #00ff00;
-    --primary-dark: #00cc00;
-    --primary-light: #00ff0033;
+    --primary: #003cff;
+    --primary-dark: #001f83;
+    --primary-light: #000000;
     --accent: #ff0000;
     --accent-light: #ff000033;
     --dark: #000000;
@@ -838,27 +838,27 @@ body.loaded {
 
 .alto-contraste .container {
     background: rgba(0, 0, 0, 0.9) !important;
-    border: 2px solid #00ff00 !important;
+    border: 2px solid #003cff !important;
 }
 
 .alto-contraste .section {
     background: rgba(0, 0, 0, 0.8) !important;
-    border: 1px solid #00ff00 !important;
+    border: 1px solid #003cff !important;
 }
 
 .alto-contraste .info-item {
     background: rgba(0, 0, 0, 0.7) !important;
-    border-left: 4px solid #00ff00 !important;
+    border-left: 4px solid #003cff !important;
 }
 
 .alto-contraste .competencia-item {
     background: rgba(0, 0, 0, 0.7) !important;
-    border: 1px solid #00ff00 !important;
+    border: 1px solid #003cff !important;
 }
 
 .alto-contraste .competencia-item:hover {
     background: rgba(0, 255, 0, 0.1) !important;
-    box-shadow: 0 0 15px #00ff00 !important;
+    box-shadow: 0 0 15px #003cff !important;
 }
 
 /* Modo claro (baseado no horário) */
@@ -1318,7 +1318,7 @@ body.modo-claro .social-link:hover {
 .alto-contraste * {
     color: #fff !important;
     background-color: #000 !important;
-    border-color: #0f0 !important;
+    border-color: #003cff !important;
 }
 
 .alto-contraste a {
