@@ -6,19 +6,11 @@
       "use": "@vercel/node"
     },
     {
+      "src": "settings/**/*",
+      "use": "@vercel/static"
+    },
+    {
       "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "css/style.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "js/script.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "images/*",
       "use": "@vercel/static"
     }
   ],
@@ -27,6 +19,10 @@
       "src": "/api/visitors",
       "dest": "/api/visitors.js",
       "methods": ["GET", "POST", "OPTIONS"]
+    },
+    {
+      "src": "/settings/(.*)",
+      "dest": "/settings/$1"
     },
     {
       "src": "/(.*)",

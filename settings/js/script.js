@@ -85,11 +85,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ==========================
-// Contador de Visitantes SIMPLIFICADO
+// Contador de Visitantes ATUALIZADO
 // ==========================
 async function incrementVisitorCount() {
     try {
-        // Tenta API externa primeiro
         const response = await fetch('/api/visitors', {
             method: 'POST',
             headers: {
@@ -99,13 +98,15 @@ async function incrementVisitorCount() {
         
         if (response.ok) {
             const data = await response.json();
-            document.getElementById('counter').textContent = data.count.toLocaleString();
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.textContent = data.count.toLocaleString();
+            }
         } else {
-            // Fallback para localStorage
             fallbackCounter();
         }
     } catch (error) {
-        console.error('API não disponível, usando fallback:', error);
+        console.error('Erro ao conectar com API:', error);
         fallbackCounter();
     }
 }
