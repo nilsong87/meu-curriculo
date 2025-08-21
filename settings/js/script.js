@@ -166,19 +166,19 @@ function initAudioEffects() {
     
     const clickSound = document.createElement('audio');
     clickSound.id = 'click-sound';
-    clickSound.innerHTML = '<source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">';
+    clickSound.innerHTML = '<source src="https://assets.mixkit.co/sfx/download/mixkit-select-click-1109.mp3" type="audio/mpeg">';
     
     const hoverSound = document.createElement('audio');
     hoverSound.id = 'hover-sound';
-    hoverSound.innerHTML = '<source src="https://assets.mixkit.co/sfx/preview/mixkit-hover-sound-1134.mp3" type="audio/mpeg">';
+    hoverSound.innerHTML = '<source src="https://assets.mixkit.co/sfx/download/mixkit-hover-sound-1134.mp3" type="audio/mpeg">';
     
     const enableSound = document.createElement('audio');
     enableSound.id = 'enable-sound';
-    enableSound.innerHTML = '<source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg">';
+    enableSound.innerHTML = '<source src="https://assets.mixkit.co/sfx/download/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg">';
     
     const disableSound = document.createElement('audio');
     disableSound.id = 'disable-sound';
-    disableSound.innerHTML = '<source src="https://assets.mixkit.co/sfx/preview/mixkit-game-show-option-select-1165.mp3" type="audio/mpeg">';
+    disableSound.innerHTML = '<source src="https://assets.mixkit.co/sfx/download/mixkit-game-show-option-select-1165.mp3" type="audio/mpeg">';
     
     audioContainer.appendChild(clickSound);
     audioContainer.appendChild(hoverSound);
