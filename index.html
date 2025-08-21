@@ -829,16 +829,26 @@
     
 
     <!-- VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new window.VLibras.Widget({
+                rootPath: 'https://vlibras.gov.br/app',
+                personalization: 'https://vlibras.gov.br/app/config',
+                opacity: 0.9, // Opacidade do widget
+                position: 'L', // Posição: L (left) ou R (right)
+                avatar: 'random' // Avatar: 'default', 'random' ou URL específica
+            });
+        });
+    </script>
+</head>
+<body>
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
 </body>
 
 </html>
