@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/visitors.js",
+      "src": "api/**/*.js",
       "use": "@vercel/node"
     },
     {
@@ -10,23 +10,22 @@
       "use": "@vercel/static"
     },
     {
-      "src": "css/style.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "js/script.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "images/*",
+      "src": "settings/**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "../api/visitors",
-      "dest": "../api/visitors.js",
-      "methods": ["GET", "POST", "OPTIONS"]
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/settings/(.*)",
+      "dest": "/settings/$1"
+    },
+    {
+      "src": "/(.*\\.(css|js|jpg|png|svg|ico))",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
