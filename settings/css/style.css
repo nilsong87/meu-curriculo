@@ -26,6 +26,8 @@
 }
 
 body {
+    
+    margin-top: 100px;
     font-family: 'Exo 2', sans-serif;
     background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
     color: var(--text);
@@ -984,8 +986,8 @@ body.modo-claro #acessibilidade-bar button {
 
 @media (max-width: 768px) {
 
-    header {
-        margin-top: 50px;
+    body {
+        margin-top: 150px;
     }
 
     .container {
@@ -1061,8 +1063,8 @@ body.modo-claro #acessibilidade-bar button {
 }
 
 @media (max-width: 576px) {
-    header{
-        margin-top: 50px;
+    body{
+        margin-top: 150px;
     }
 
     .container {
@@ -1119,7 +1121,34 @@ body.modo-claro #acessibilidade-bar button {
     }
 }
 
+@media (max-width: 445px) {
+    body {
+        margin-top: 150px;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .competencias-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    #acessibilidade-bar button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    #visitor-counter {
+        font-size: 0.8rem;
+    }
+}
+
 @media (max-width: 400px) {
+    body {
+        margin-top: 175px;
+    }
+
     .header h1 {
         font-size: 1.8rem;
     }
