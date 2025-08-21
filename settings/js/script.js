@@ -84,7 +84,42 @@ document.addEventListener("DOMContentLoaded", function () {
     initVerMaisButton();
 });
 
+// ==========================
+// Contador de Visitantes SIMPLIFICADO
+// ==========================
+async function incrementVisitorCount() {
+    try {
+        // Tenta API externa primeiro
+        const response = await fetch('/api/visitors', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            document.getElementById('counter').textContent = data.count.toLocaleString();
+        } else {
+            // Fallback para localStorage
+            fallbackCounter();
+        }
+    } catch (error) {
+        console.error('API não disponível, usando fallback:', error);
+        fallbackCounter();
+    }
+}
 
+function fallbackCounter() {
+    const counter = document.getElementById('counter');
+    if (!counter) return;
+    
+    let count = parseInt(localStorage.getItem('visitCount') || '1000');
+    count++;
+    
+    localStorage.setItem('visitCount', count);
+    counter.textContent = count.toLocaleString();
+}
 
 // ==========================
 // Acessibilidade: Alto contraste e ajuste de fonte
